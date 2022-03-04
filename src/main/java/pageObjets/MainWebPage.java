@@ -90,6 +90,9 @@ public class MainWebPage {
         getFreeClassesFormSchoolDropDown().click();
         getFreeClassesFormSchoolChoice().click();
         getFreeClassesFormSubmitButton().click();
+
+//        System.out.println(WebDriverRunner.getSelenideProxy().getProxy().getHar().getLog().getEntries());
+
         webdriver().shouldHave(url("https://chicaga.ru/thank-online/"));
         thanksTitle().shouldHave(Condition.text("Cпасибо за заявку!"));
     }
