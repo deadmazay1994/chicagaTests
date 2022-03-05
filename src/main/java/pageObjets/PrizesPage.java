@@ -1,10 +1,12 @@
 package pageObjets;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
+import java.time.Duration;
+
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class PrizesPage {
@@ -58,45 +60,45 @@ public class PrizesPage {
 
     //---------checks-----------
     @Step("Проверить открытие формы заявления на участие в розыгрыже при клике кнопку Хочу c iPhone13")
-    public void checkBigPrizeButton() throws InterruptedException {
+    public void checkBigPrizeButton() {
         checkPrizeButton(wantPrizeButtons().get(0));
     }
 
     @Step("Проверить открытие формы заявления на участие в розыгрыже при клике на кнопку Хочу с Mercedes")
-    public void checkMiddlePrizeButton() throws InterruptedException {
+    public void checkMiddlePrizeButton() {
         checkPrizeButton(wantPrizeButtons().get(1));
     }
 
     @Step("Проверить открытие формы заявления на участие в розыгрыже при клике на кнопку Хочу с Beauty Box")
-    public void checkKatyaPrizeButton() throws InterruptedException {
+    public void checkKatyaPrizeButton() {
         checkPrizeButton(wantPrizeButtons().get(2));
     }
 
     @Step("Проверить открытие формы заявления на участие в розыгрыже при клике на кнопку Хочу в мобильной версии сайта")
-    public void checkMobilePrizeButton() throws InterruptedException {
+    public void checkMobilePrizeButton() {
         switchTo().frame(frame());
         mobilePrizeButton().click();
-        mobilePrizeForm().shouldBe(Condition.visible);
+        mobilePrizeForm().shouldBe(visible);
     }
 
-    private void checkPrizeButton(SelenideElement prizeButton) throws InterruptedException {
+    private void checkPrizeButton(SelenideElement prizeButton) {
         switchTo().frame(frame());
         prizeButton.click();
-        prizeForm().shouldBe(Condition.visible);
+        prizeForm().shouldBe(visible);
     }
 
     @Step("Проверить заполнение и отправку формы розыгрыша")
     public void checkPrizeForm() throws InterruptedException {
         switchTo().frame(frame());
         wantPrizeButtons().get(1).click();
-        prizeForm().shouldBe(Condition.visible);
+        prizeForm().shouldBe(visible);
         prizeFormNameInput().setValue("Автотест");
         prizeFormPhoneInput().setValue("+700000000000");
         prizeFormSelectSchoolDropDown().click();
         prizeFormSelectSchoolChoice().click();
+        prizeFormSubmitButton().shouldBe(visible, Duration.ofSeconds(3)).click();
         Thread.sleep(100);
-        prizeFormSubmitButton().click();
-        Thread.sleep(100);
-        prizeFormTitle().shouldHave(Condition.text("Форма успешно отправлена"));
+        prizeFormTitle().shouldBe(visible);
+        prizeFormTitle().shouldHave(text("Форма успешно отправлена"));
     }
 }

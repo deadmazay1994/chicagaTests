@@ -5,6 +5,8 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Selenide.*;
 
 public class MainMobilePage {
@@ -65,34 +67,33 @@ public class MainMobilePage {
 
     //---------checks-----------
     @Step("Проверить появление формы для записи на консультацию при нажатии на кнопку 3 бесплатных пробных урока сверху страницы")
-    public void checkFirstScreenButton() throws InterruptedException {
+    public void checkFirstScreenButton() {
         checkButton(firstScreenButton());
     }
 
     @Step("Проверить появление формы для записи на консультацию при нажатии на кнопку 3 бесплатных пробных урока под преподавателями")
-    public void checkTeamCasesButton() throws InterruptedException {
+    public void checkTeamCasesButton() {
         checkButton(teamCasesButton());
     }
 
     @Step("Проверить появление формы для записи на консультацию при нажатии на кнопку 3 бесплатных пробных урока под контактами школы")
-    public void checkSchoolContactButton() throws InterruptedException {
+    public void checkSchoolContactButton() {
         checkButton(schoolContactButton());
     }
 
     @Step("Проверить появление формы для записи на консультацию при нажатии на кнопку Записаться на консультацию над розыгрышем")
-    public void checkConsultation1Button() throws InterruptedException {
+    public void checkConsultation1Button() {
         checkButton(consultationButtons().get(0));
     }
 
     @Step("Проверить появление формы для записи на консультацию при нажатии на кнопку Записаться на консультацию под подарками")
-    public void checkConsultation2Button() throws InterruptedException {
+    public void checkConsultation2Button() {
         checkButton(consultationButtons().get(1));
     }
 
-    private void checkButton(SelenideElement button) throws InterruptedException {
+    private void checkButton(SelenideElement button) {
         button.click();
-        Thread.sleep(1_000);
-        consultationForm().shouldBe(Condition.visible);
+        consultationForm().shouldBe(Condition.visible, Duration.ofSeconds(20));
     }
 
     @Step("Проверить заполнение и отправку формы для записи на консультацию в футере")

@@ -6,29 +6,28 @@ import static pageObjets.PrizesPage.prizesPage;
 @DisplayName("Переход к форме подачи заявки и участия в конкурсе при клике на кнопки Хочу")
 public class WantPrizeTests extends TestBase {
 
-    //@Test
+    @Test
     @DisplayName("Открытие формы подачи заявки и участия в конкурсе под iPhone13")
-    public void bigPrizeButtonTest() throws InterruptedException {
+    public void bigPrizeButtonTest() {
         prizesPage.checkBigPrizeButton();
     }
 
-    //@Test
+    @Test
     @DisplayName("Открытие формы подачи заявки и участия в конкурсе под Mercedes")
-    public void middlePrizeButtonTest() throws InterruptedException {
+    public void middlePrizeButtonTest() {
         prizesPage.checkMiddlePrizeButton();
     }
 
-    //@Test
+    @Test
     @DisplayName("Открытие формы подачи заявки и участия в конкурсе под Beauty Box")
-    public void katyaPrizeButtonTest() throws InterruptedException {
+    public void katyaPrizeButtonTest() {
         prizesPage.checkKatyaPrizeButton();
     }
 
-    //@Test
+    @Test
     @DisplayName("Мобильная версия - Открытие формы подачи заявки и участия в конкурсе")
-    public void mobilePrizeButtonTest() throws InterruptedException {
+    public void mobilePrizeButtonTest() {
         setUpMobileSize();
-        Thread.sleep(1_000);
         prizesPage.checkMobilePrizeButton();
     }
 }

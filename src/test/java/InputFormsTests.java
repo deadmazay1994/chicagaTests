@@ -1,4 +1,3 @@
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -6,6 +5,7 @@ import static pageObjets.MainMobilePage.mainMobilePage;
 import static pageObjets.MainWebPage.mainPage;
 import static pageObjets.PrizesPage.prizesPage;
 
+@DisplayName("Формы ввода данных")
 public class InputFormsTests extends TestBase {
 
     @Test
@@ -15,7 +15,7 @@ public class InputFormsTests extends TestBase {
         mainMobilePage.checkFooterForm();
     }
 
-    //@Test
+    @Test
     @DisplayName("Заполнение и отправка формы на розыгрыш")
     public void prizeFormTest() throws InterruptedException {
         prizesPage.checkPrizeForm();
@@ -26,5 +26,4 @@ public class InputFormsTests extends TestBase {
     public void getFreeClassesFormTest() {
         mainPage.checkGetFreeClassesForm();
     }
-
 }

@@ -7,6 +7,8 @@ import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.JavascriptExecutor;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverConditions.url;
 
@@ -79,7 +81,8 @@ public class MainWebPage {
         JavascriptExecutor executor = (JavascriptExecutor) Selenide.webdriver().driver().getWebDriver();
         Long actualY = (Long) executor.executeScript("return window.pageYOffset;");
         int expectedY = getFreeClassesForm().getCoordinates().onPage().getY();
-        Assertions.assertTrue(expectedY >= actualY + 100 && expectedY <= actualY + 150, "Изменения по кординате Y " + actualY + " не соответствует кординате Y расположения формы заполнения данных " + expectedY);
+        Assertions.assertTrue(expectedY >= actualY + 100 && expectedY <= actualY + 150,
+                "Изменения по кординате Y " + actualY + " не соответствует кординате Y расположения формы заполнения данных " + expectedY);
     }
 
     @Step("Проверить заполнение и отправку формы на получение бесплатных пробных занятий")
@@ -91,9 +94,7 @@ public class MainWebPage {
         getFreeClassesFormSchoolChoice().click();
         getFreeClassesFormSubmitButton().click();
 
-//        System.out.println(WebDriverRunner.getSelenideProxy().getProxy().getHar().getLog().getEntries());
-
-        webdriver().shouldHave(url("https://chicaga.ru/thank-online/"));
+        webdriver().shouldHave(url("https://chicaga.ru/thank-online/"), Duration.ofSeconds(30));
         thanksTitle().shouldHave(Condition.text("Cпасибо за заявку!"));
     }
 }
